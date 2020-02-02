@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import CryptoHelper from '../Helpers/CryptoHelper';
+import CryptoHelper from '../helpers/crypto-helper';
 import { UserModel } from '../models/users';
 
 

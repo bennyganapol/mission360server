@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
-import CryptoHelper from '../Helpers/CryptoHelper';
-
-
-// eslint-disable-next-line import/prefer-default-export
+import CryptoHelper from '../helpers/crypto-helper';
 
 const tokenLengthSeconds = 3600; // Hour
 const excludeList = ['/auth/login', '/users/register'];
