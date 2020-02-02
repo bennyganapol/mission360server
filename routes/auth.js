@@ -23,12 +23,13 @@ authRouter.post('/login', async (req, res) => {
         jwt: jwtToken,
       });
     }
-    return res.status(400).json({ status: 'bad' });
+    return res.status(403).json({ error: 'Incorrect username and password' });
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(400).json({ error: 'Authentication failed' });
   }
 });
 
+// Not in use
 authRouter.post('/logout', async (req, res) => {
   console.log('logging out');
   const response = { logout: 'logout success' };

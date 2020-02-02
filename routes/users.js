@@ -7,6 +7,7 @@ import { UserModel } from '../models/users';
 export const usersRouter = express.Router();
 const jobTitles = ['Front End Developer', 'Full Stack Developer', 'Marketing', 'DBA', 'Back End Developer', 'Architect'];
 
+// This should be change to GET instead of post
 usersRouter.post('/', async (req, res) => {
   try {
     const usersData = await UserModel.find();
@@ -21,9 +22,9 @@ usersRouter.post('/', async (req, res) => {
         imageUrl: `https://bootdey.com/img/Content/avatar/avatar${(i % 7) + 1}.png`,
       });
     }
-    res.json(usersResponse);
+    res.status(200).json(usersResponse);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
@@ -44,8 +45,8 @@ usersRouter.post('/register', async (req, res) => {
       password: hashedPassword,
     });
     const createdUser = await newUser.save();
-    return res.status(201).json({ status: 'ok', user: createdUser });
+    return res.status(200).json({ status: 'ok', user: createdUser });
   } catch (err) {
-    return res.status(400).json({ message: err.message });
+    return res.status(400).json({ error: 'Registration failed' });
   }
 });

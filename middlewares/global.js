@@ -18,15 +18,15 @@ export const global = {
         const tokenExpiration = new Date(tokenCreatedDate.getTime() + (tokenLengthSeconds * 1000));
         if (Date.now() > tokenExpiration) {
           console.warn('JWT expired');
-          return res.status(500).json({ message: 'Token expired' });
+          return res.status(401).json({ error: 'Token expired' });
         }
         req.data = { userName: jwt.userName };
       } else {
-        return res.status(500).json({ message: 'No Token' });
+        return res.status(401).json({ error: 'No Token' });
       }
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: 'Authentication error' });
+      return res.status(400).json({ error: 'Authentication error' });
     }
 
 
